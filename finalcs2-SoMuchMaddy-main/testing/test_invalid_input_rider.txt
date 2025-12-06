@@ -1,0 +1,16 @@
+r
+a
+9
+0
+1
+John
+John Doe
+-5
+20
+-10
+150
+abc123
+1234567892
+john@example.com
+b
+q

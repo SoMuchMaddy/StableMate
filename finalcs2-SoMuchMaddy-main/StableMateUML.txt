@@ -1,0 +1,222 @@
+@startuml
+title StableMate Project - UML Class Diagram
+
+' ---------- Core domain classes ----------
+
+class StableMate {
+  - menus : ArrayList<Menu>
+  - horses : ArrayList<Horse>
+  - lessons : ArrayList<Lesson>
+  - riders : ArrayList<Rider>
+  - horsesByID : HashMap<String,Horse>
+  - ridersByID : HashMap<String,Rider>
+  - annualPQ : PriorityQueue<Horse>
+  - dewormPQ : PriorityQueue<Horse>
+  - farrierPQ : PriorityQueue<Horse>
+  - lessonsPQ : PriorityQueue<Lesson>
+  - stable : Stable
+  --
+  + main(args : String[]) : void
+  - buildMenus() : void
+  - runAction(actionName : String) : void
+  - initializeQueues() : void
+  - loadRidersFromFile(file : String) : void
+  - loadHorsesFromFile(file : String) : void
+  - loadLessonsFromFile(file : String) : void
+  - loadStableFromFile(file : String) : void
+  - saveRidersToFile(file : String) : void
+  - saveHorsesToFile(file : String) : void
+  - saveLessonsToFile(file : String) : void
+  - saveStableToFile(file : String) : void
+}
+
+class Rider {
+  - id : String
+  - name : String
+  - phoneNumber : String
+  - email : String
+  - type : String
+  - age : int
+  - weight : double
+  --
+  + Rider()
+  + Rider(name:String, phone:String, email:String, type:String,
+          weight:double, age:int)
+  + getID() : String
+  + getName() : String
+  + getPhoneNumber() : String
+  + getEmail() : String
+  + getType() : String
+  + getAge() : int
+  + getWeight() : double
+  + setID(id:String) : void
+  + setName(name:String) : void
+  + setPhoneNumber(phone:String) : void
+  + setEmail(email:String) : void
+  + setType(type:String) : void
+  + setAge(age:int) : void
+  + setWeight(weight:double) : void
+}
+
+class Horse {
+  - id : String
+  - name : String
+  - breed : String
+  - color : String
+  - sex : String
+  - food : String
+  - status : String
+  - owner : Rider
+  - hands : double
+  - weight : double
+  - comp : ArrayList<Horse>
+  - compIDs : ArrayList<String>
+  - lastAnnual : LocalDate
+  - lastDeworm : LocalDate
+  - lastFarrier : LocalDate
+  - annualFreq : int
+  - dewormFreq : int
+  - farrierFreq : int
+  --
+  + Horse()
+  + Horse(name:String, breed:String, color:String, sex:String,
+          food:String, status:String, owner:Rider,
+          comp:ArrayList<Horse>, hands:double, weight:double,
+          lastAnnual:LocalDate, lastDeworm:LocalDate,
+          lastFarrier:LocalDate, annualFreq:int,
+          dewormFreq:int, farrierFreq:int)
+  + getID() : String
+  + getName() : String
+  + getOwner() : Rider
+  + getNextAnnualDue() : LocalDate
+  + getNextDewormDue() : LocalDate
+  + getNextFarrierDue() : LocalDate
+  + isAnnualOverdue(today:LocalDate) : boolean
+  + isDewormOverdue(today:LocalDate) : boolean
+  + isFarrierOverdue(today:LocalDate) : boolean
+  + setOwner(owner:Rider) : void
+  + setComp(comp:ArrayList<Horse>) : void
+}
+
+class Lesson {
+  - date : LocalDate
+  - time : LocalTime
+  - horse : Horse
+  - rider : Rider
+  - duration : int
+  --
+  + Lesson()
+  + Lesson(horse:Horse, rider:Rider,
+           date:LocalDate, time:LocalTime,
+           duration:int)
+  + getDate() : LocalDate
+  + getTime() : LocalTime
+  + getHorse() : Horse
+  + getRider() : Rider
+  + getDuration() : int
+  + setDate(date:LocalDate) : void
+  + setTime(time:LocalTime) : void
+  + setHorse(horse:Horse) : void
+  + setRider(rider:Rider) : void
+}
+
+class Stable {
+  - name : String
+  - acreage : int
+  - monthlyCost : double
+  - monthlyIncome : double
+  - yearBuilt : int
+  - owners : ArrayList<Rider>
+  --
+  + Stable()
+  + Stable(name:String, acreage:int, monthlyCost:double,
+           owners:ArrayList<Rider>, yearBuilt:int,
+           monthlyIncome:double)
+  + getName() : String
+  + getAcreage() : int
+  + getMonthlyCost() : double
+  + getMonthlyIncome() : double
+  + getYearBuilt() : int
+  + getOwners() : ArrayList<Rider>
+  + setName(name:String) : void
+  + setAcreage(acreage:int) : void
+  + setMonthlyCost(cost:double) : void
+  + setMonthlyIncome(income:double) : void
+  + setYearBuilt(year:int) : void
+  + setOwners(owners:ArrayList<Rider>) : void
+}
+
+' ---------- Menu system ----------
+
+class Menu {
+  - name : String
+  - title : String
+  - options : ArrayList<MenuOption>
+  --
+  + Menu(name:String, title:String)
+  + addOption(option:MenuOption) : void
+  + display() : void
+  + getName() : String
+  + getOptions() : ArrayList<MenuOption>
+}
+
+class MenuOption {
+  - key : String
+  - description : String
+  - actionName : String
+  - nextMenuName : String
+  --
+  + MenuOption(key:String, description:String,
+               actionName:String, nextMenuName:String)
+  + getKey() : String
+  + getDescription() : String
+  + getActionName() : String
+  + getNextMenuName() : String
+}
+
+' ---------- Utility ----------
+
+class IDGenerator {
+  {static} - rand : Random
+  {static} - LETTERS : String
+  {static} - NUMBERS : String
+  {static} - usedIDs : Set<String>
+  --
+  {static} + horseID() : String
+  {static} + riderID() : String
+  {static} + registerExisting(id:String) : void
+}
+
+' ---------- Relationships ----------
+
+StableMate "1" *-- "many" Menu
+Menu "1" *-- "many" MenuOption
+
+StableMate "1" *-- "many" Rider
+StableMate "1" *-- "many" Horse
+StableMate "1" *-- "many" Lesson
+StableMate "1" *-- "1" Stable
+
+Rider "1" o-- "many" Horse : owns >
+Horse "0..1" --> "1" Rider : owner
+
+Horse "0..*" -- "0..*" Horse : compatible
+
+Lesson "0..1" --> "1" Rider
+Lesson "0..1" --> "1" Horse
+
+Stable "0..*" o-- "many" Rider : owners
+
+IDGenerator <.. Rider : uses
+IDGenerator <.. Horse : uses
+
+note top of StableMate
+  StableMate is the main console controller.
+  It loads data from files, builds menus,
+  runs user actions, and saves data back.
+end note
+
+note "Domain model for managing Riders,\nHorses, Lessons, and Stable info." as N1
+StableMate .. N1
+
+@enduml
