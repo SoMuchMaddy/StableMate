@@ -3,10 +3,6 @@
 StableMate is a full-featured console application for managing Riders, Horses, Lessons, and Stable information.  
 It supports CRUD operations, automatic care-queue calculations, input validation, persistent data storage, and full simulated-input testing.
 
-This project was developed for the CS143 Final Project.
-
-<img width="394" height="220" alt="image" src="https://github.com/user-attachments/assets/0c285af3-7eec-4ad3-9b0b-fb6c63c996b4" />
-
 ---
 
 # Project Description
@@ -25,8 +21,6 @@ All interaction happens through a menu-driven console interface using keyboard i
 ---
 
 # Dependencies & Installation  
-
-<img width="451" height="323" alt="image" src="https://github.com/user-attachments/assets/cdc44ef2-2072-4854-bc9c-0b2067dc8c10" />
 
 StableMate requires:
 
@@ -136,8 +130,6 @@ The program emphasizes:
 
 # Javadoc Overview
 
-<img width="395" height="512" alt="image" src="https://github.com/user-attachments/assets/673a3db4-5d01-41b4-a82f-0ab186424a5a" />
-
 The project includes detailed Javadoc for:
 
 ### **Classes**
@@ -170,8 +162,6 @@ The project includes detailed Javadoc for:
 
 # Testing Overview (Simulated Keyboard Input)
 
-<img width="498" height="459" alt="horse" src="https://github.com/user-attachments/assets/10de9eb6-e372-4581-af44-dddc9f265eb7" />
-
 StableMate includes **18 automated input tests**, each fully described in `TESTING.md`.  
 These tests verify:
 
@@ -198,37 +188,11 @@ These tests verify:
 
 <img width="1936" height="2283" alt="StableMateUML" src="https://github.com/user-attachments/assets/29f29ad1-c189-4741-b82b-06ef7784c479" /> 
 
-### UML Notes:
-- All major classes included  
-- Only important fields/methods shown (not every method)  
-- Relationships  
-- One domain-level note box included  
-
 ---
 
 # Citations & Influences
 
-- Oracle Java Documentation (LocalDate, LocalTime)  
-- AI assisted in writing some Javadoc comments and non-code visual appeal formatting (as suggested)  
 - Inspiration for logic based on real equine management practices 
-
----
-
-# Challenges
-
-- Building UML diagrams for many interrelated classes was a bit of a challenge but was ultimately very satisfying
-- Simulated keyboard testing was in fact easier than manual once I tried it, will be going that route from now on
-- Avoiding overly complicated code got hard at a certain point. It looks better than it did now, but I'm sure it could be more concise
-
-<img width="323" height="285" alt="image" src="https://github.com/user-attachments/assets/eeb9f77f-472b-4e6c-a267-c306cd321683" />
-
----
-
-# Final Notes
-
-Thank you again for such an awesome quarter!!!
-
-<img width="573" height="659" alt="image" src="https://github.com/user-attachments/assets/15dd5026-655a-4a3a-beb8-b964acc73fe7" />
 
 ---
 
