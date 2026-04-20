@@ -29,7 +29,7 @@ StableMate requires:
 
 Directory structure:
 
-StableMate-SoMuchMaddy/
+StableMate/
 │
 
 ├── data/ ← Active runtime data
